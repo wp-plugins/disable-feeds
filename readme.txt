@@ -1,0 +1,31 @@
+=== Disable Feeds ===
+Contributors: solarissmoke
+Tags: disable, rss, atom, rdf, feeds
+Requires at least: 3.2
+Tested up to: 3.4
+Stable tag: trunk
+
+Disables all RSS/Atom/RDF feeds on your WordPress site.
+
+== Description ==
+
+This plugin disables all RSS/Atom/RDF feeds on your site. It is useful if you use WordPress purely as a content management system (and not for blogging). All requests for feeds will be redirected to the corresponding HTML content.
+
+If you come across any bugs or have suggestions, please use the plugin support forum or [email me](http://rayofsolaris.net/contact/). I can't fix it if I don't know it's broken! Please check the [FAQ](http://wordpress.org/extend/plugins/disable-feeds/faq/) for common issues.
+
+== Frequently Asked Questions ==
+
+= Why should I disable feeds? =
+
+Feeds are useful if you have regularly updated content (blog posts, comments) on your site, and you want people to be able to subscribe to those updates. If you have static pages, then they aren't, and just add overhead to your site.
+
+== Changelog ==
+
+= 1.0 =
+* First public release.
+
+== Installation ==
+
+1. Upload the plugin folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. That's it. All feeds are now disabled (and any requests for a feed will be redirected back to the parent content).
