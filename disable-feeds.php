@@ -34,7 +34,7 @@ class Disable_Feeds {
 	}
 	
 	function settings_field() {
-		echo '<p>The <em>Disable Feeds</em> plugin is active, and all feed are disabled. By default, all requests for feeds are redirected to the corresponding HTML content. If you want to issue a 404 (page not found) response instead, uncheck the box below.</p><p><input type="checkbox" name="disable_feeds_redirect" id="disable_feeds_redirect" class="checkbox" ' . checked( get_option( 'disable_feeds_redirect', true ), true, false ) . '/><label for="disable_feeds_redirect"> Redirect feed requests to corresponding HTML content</label>';
+		echo '<p>The <em>Disable Feeds</em> plugin is active, and all feed are disabled. By default, all requests for feeds are redirected to the corresponding HTML content. If you want to issue a 404 (page not found) response instead, uncheck the box below.</p><p><input type="checkbox" name="disable_feeds_redirect" id="disable_feeds_redirect" class="checkbox" ' . checked( get_option( 'disable_feeds_redirect', true ), true, false ) . '/><label for="disable_feeds_redirect"> Redirect feed requests to corresponding HTML content</label></p>';
 	}
 	
 	function remove_links() {

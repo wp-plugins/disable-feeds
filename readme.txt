@@ -19,7 +19,7 @@ If you come across any bugs or have suggestions, please use the plugin support f
 
 Feeds are useful if you have regularly updated content (blog posts, comments) on your site, and you want people to be able to subscribe to those updates. If you have static pages, then they aren't, and just add overhead to your site.
 
-= What if I don't want to reidrect feed requests? =
+= What if I don't want to redirect feed requests? =
 
 In `Settings -> Reading` you will find an option to turn off redirection and issue a 404 (page not found) response instead.
 
