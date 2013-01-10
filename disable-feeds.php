@@ -14,7 +14,6 @@ if( !defined( 'ABSPATH' ) )
 
 class Disable_Feeds {
 	function __construct() {
-		add_action( 'widgets_init', array( $this, 'widgets' ) );
 		if( is_admin() ) {
 			add_action( 'admin_init', array( $this, 'admin_setup' ) );
 		}
@@ -59,10 +58,6 @@ class Disable_Feeds {
 			$wp_query->set_404();
 			status_header( 404 );
 		}
-	}
-	
-	function widgets() {
-		unregister_widget( 'WP_Widget_RSS' );
 	}
 }
 

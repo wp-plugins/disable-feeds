@@ -27,7 +27,6 @@ In `Settings -> Reading` you will find an option to turn off redirection and iss
 
 = 1.1 =
 * Added the option to disable redirection of feed requests (and issue a 404 instead)
-* Disable RSS widget when the plugin is active.
 
 = 1.0 =
 * First public release.
