@@ -52,6 +52,7 @@ class Disable_Feeds {
 			}
 
 			set_query_var( 'feed', '' );	// redirect_canonical will do the rest
+			redirect_canonical();
 		}
 		else {
 			$wp_query->is_feed = false;
