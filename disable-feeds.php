@@ -29,7 +29,7 @@ class Disable_Feeds {
 	}
 	
 	function settings_field() {
-		$redirect = get_option( 'disable_feeds_redirect', 'on' );
+		$redirect = $this->redirect_status();
 		echo '<p>The <em>Disable Feeds</em> plugin is active, and all feed are disabled. By default, all requests for feeds are redirected to the corresponding HTML content. If you want to issue a 404 (page not found) response instead, select the second option below.</p><p><input type="radio" name="disable_feeds_redirect" value="on" id="disable_feeds_redirect_yes" class="radio" ' . checked( $redirect, 'on', false ) . '/><label for="disable_feeds_redirect_yes"> Redirect feed requests to corresponding HTML content</label><br /><input type="radio" name="disable_feeds_redirect" value="off" id="disable_feeds_redirect_no" class="radio" ' . checked( $redirect, 'off', false ) . '/><label for="disable_feeds_redirect_no"> Issue a 404 (page not found) error for feed requests</label></p>';
 	}
 	
@@ -42,7 +42,7 @@ class Disable_Feeds {
 		if( !is_feed() )
 			return;
 
-		if( get_option( 'disable_feeds_redirect', 'on' ) == 'on' ) {
+		if( $this->redirect_status() == 'on' ) {
 			if( isset( $_GET['feed'] ) ) {
 				wp_redirect( remove_query_arg( 'feed' ), 301 );
 				exit;
@@ -56,6 +56,16 @@ class Disable_Feeds {
 			$wp_query->set_404();
 			status_header( 404 );
 		}
+	}
+	
+	private function redirect_status() {
+		$r = get_option( 'disable_feeds_redirect', 'on' );
+		// back compat
+		if( is_bool( $r ) ) {
+			$r = $r ? 'on' : 'off';
+			update_option( 'disable_feeds_redirect', $r );
+		}
+		return $r;
 	}
 }
 
