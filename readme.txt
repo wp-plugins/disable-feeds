@@ -29,6 +29,9 @@ In `Settings -> Reading` you will find an option to turn off redirection and iss
 
 == Changelog ==
 
+= 1.1.1 =
+* Bugfix: Redirect/404 setting in `Settings -> Reading` did not update properly.
+
 = 1.1 =
 * Added the option to disable redirection of feed requests (and issue a 404 instead)
 
