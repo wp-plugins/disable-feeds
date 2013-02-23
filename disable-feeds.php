@@ -3,7 +3,7 @@
 Plugin Name: Disable Feeds
 Plugin URI: http://wordpress.org/extend/plugins/disable-feeds/
 Description: Disable all RSS/Atom feeds on your WordPress site.
-Version: 1.1.1
+Version: 1.2
 Author: Samir Shah
 Author URI: http://rayofsolaris.net/
 License: GPLv2 or later
@@ -26,11 +26,14 @@ class Disable_Feeds {
 	function admin_setup() {
 		add_settings_field( 'disable_feeds_redirect', 'Disable Feeds Plugin', array( $this, 'settings_field' ), 'reading' );
 		register_setting( 'reading', 'disable_feeds_redirect' );
+		register_setting( 'reading', 'disable_feeds_allow_main' );
 	}
 	
 	function settings_field() {
 		$redirect = $this->redirect_status();
-		echo '<p>The <em>Disable Feeds</em> plugin is active, and all feed are disabled. By default, all requests for feeds are redirected to the corresponding HTML content. If you want to issue a 404 (page not found) response instead, select the second option below.</p><p><input type="radio" name="disable_feeds_redirect" value="on" id="disable_feeds_redirect_yes" class="radio" ' . checked( $redirect, 'on', false ) . '/><label for="disable_feeds_redirect_yes"> Redirect feed requests to corresponding HTML content</label><br /><input type="radio" name="disable_feeds_redirect" value="off" id="disable_feeds_redirect_no" class="radio" ' . checked( $redirect, 'off', false ) . '/><label for="disable_feeds_redirect_no"> Issue a 404 (page not found) error for feed requests</label></p>';
+		echo '<p>The <em>Disable Feeds</em> plugin is active, By default, all feeds are disabled, and all requests for feeds are redirected to the corresponding HTML content. You can tweak this behaviour below.</p>';
+		echo '<p><input type="radio" name="disable_feeds_redirect" value="on" id="disable_feeds_redirect_yes" class="radio" ' . checked( $redirect, 'on', false ) . '/><label for="disable_feeds_redirect_yes"> Redirect feed requests to corresponding HTML content</label><br /><input type="radio" name="disable_feeds_redirect" value="off" id="disable_feeds_redirect_no" class="radio" ' . checked( $redirect, 'off', false ) . '/><label for="disable_feeds_redirect_no"> Issue a Page Not Found (404) error for feed requests</label></p>';
+		echo '<p><input type="checkbox" name="disable_feeds_allow_main" value="on" id="disable_feeds_allow_main" ' . checked( $this->allow_main(), true, false ) . '/><label for="disable_feeds_allow_main"> Do not disable the <strong>global post feed</strong> and <strong>global comment feed</strong></label></p>';
 	}
 	
 	function remove_links() {
@@ -40,6 +43,10 @@ class Disable_Feeds {
 	
 	function filter_query( $wp_query ) {
 		if( !is_feed() )
+			return;
+
+		if( $this->allow_main()
+			&& ! ( is_singular() || is_archive() || is_date() || is_author() || is_category() || is_tag() || is_tax() || is_search() ) )
 			return;
 
 		if( $this->redirect_status() == 'on' ) {
@@ -66,6 +73,10 @@ class Disable_Feeds {
 			update_option( 'disable_feeds_redirect', $r );
 		}
 		return $r;
+	}
+	
+	private function allow_main() {
+		return ( get_option( 'disable_feeds_allow_main', 'off' ) == 'on' );
 	}
 }
 

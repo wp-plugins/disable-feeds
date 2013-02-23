@@ -11,6 +11,8 @@ Disables all RSS/Atom/RDF feeds on your WordPress site.
 
 This plugin disables all RSS/Atom/RDF feeds on your site. It is useful if you use WordPress purely as a content management system (and not for blogging). All requests for feeds will be redirected to the corresponding HTML content.
 
+There are a couple of options to tweak the plugin's behaviour - go to `Settings -> Reading` to see them.
+
 If you come across any bugs or have suggestions, please use the plugin support forum or [email me](http://rayofsolaris.net/contact/). I can't fix it if I don't know it's broken! Please check the [FAQ](http://wordpress.org/extend/plugins/disable-feeds/faq/) for common issues.
 
 == Frequently Asked Questions ==
@@ -27,7 +29,14 @@ This plugin is only able to disable feeds themselves. The links to feeds are gen
 
 In `Settings -> Reading` you will find an option to turn off redirection and issue a 404 (page not found) response instead.
 
+= What if I want to keep the main post/comment feeds but disable all other feeds? =
+
+In `Settings -> Reading` you will find an option to allow global feeds. All other feeds (individual post comments, archives, search, category etc.) will still be disabled.
+
 == Changelog ==
+
+= 1.2 =
+* Added the option to allow the global post and comment feeds.
 
 = 1.1.1 =
 * Bugfix: Redirect/404 setting in `Settings -> Reading` did not update properly.
