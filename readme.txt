@@ -35,6 +35,9 @@ In `Settings -> Reading` you will find an option to allow global feeds. All othe
 
 == Changelog ==
 
+= 1.2.1 =
+* Bugfix: Old WordPress feed URLs were not being redirected.
+
 = 1.2 =
 * Added the option to allow the global post and comment feeds.
 
