@@ -3,7 +3,7 @@
 Plugin Name: Disable Feeds
 Plugin URI: http://wordpress.org/extend/plugins/disable-feeds/
 Description: Disable all RSS/Atom feeds on your WordPress site.
-Version: 1.2.1
+Version: 1.3
 Author: Samir Shah
 Author URI: http://rayofsolaris.net/
 License: GPLv2 or later
@@ -19,7 +19,7 @@ class Disable_Feeds {
 		}
 		else {
 			add_action( 'wp_loaded', array( $this, 'remove_links' ) );
-			add_filter( 'parse_query', array( $this, 'filter_query' ) );
+			add_action( 'template_redirect', array( $this, 'filter_feeds' ), 1 );
 		}
 	}
 	
@@ -41,8 +41,10 @@ class Disable_Feeds {
 		remove_action( 'wp_head', 'feed_links_extra', 3 );
 	}
 	
-	function filter_query( $wp_query ) {
-		if( !is_feed() )
+	function filter_feeds() {
+		global $wp_rewrite;
+		
+		if( !is_feed() || is_404() )
 			return;
 
 		if( $this->allow_main()
@@ -57,7 +59,21 @@ class Disable_Feeds {
 
 			if( get_query_var( 'feed' ) !== 'old' )	// WP redirects these anyway, and removing the query var will confuse it thoroughly
 				set_query_var( 'feed', '' );
+
 			redirect_canonical();	// Let WP figure out the appropriate redirect URL.
+			
+			// Still here? redirect_canonical failed to redirect, probably because of a filter. Try the hard way.
+			$struct = ( !is_singular() && is_comment_feed() ) ? $wp_rewrite->get_comment_feed_permastruct() : $wp_rewrite->get_feed_permastruct();
+			$struct = preg_quote( $struct, '#' );
+			$struct = str_replace( '%feed%', '(\w+)?', $struct );
+			$struct = preg_replace( '#/+#', '/', $struct );
+			$requested_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$new_url = preg_replace( '#' . $struct . '/?$#', '', $requested_url );
+
+			if( $new_url != $requested_url ) {
+				wp_redirect( $new_url, 301 );
+				exit;
+			}
 		}
 		else {
 			$wp_query->is_feed = false;
