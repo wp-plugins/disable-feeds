@@ -36,7 +36,7 @@ In `Settings -> Reading` you will find an option to allow global feeds. All othe
 == Changelog ==
 
 = 1.3 =
-* More robust feed redirection.
+* More robust feed redirection. In some rare cases, WordPress fails to automatically redirect the user to the parent content. If this happens, the plugin now attempts a redirect by parsing the URL and removing the feed portion manually. Most installations will not be affected.
 
 = 1.2.1 =
 * Bugfix: Old WordPress feed URLs were not being redirected.
