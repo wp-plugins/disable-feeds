@@ -35,6 +35,9 @@ In `Settings -> Reading` you will find an option to allow global feeds. All othe
 
 == Changelog ==
 
+= 1.3.1 =
+* Bugfix: Missing global variable caused error when feed URL were set to 404.
+
 = 1.3 =
 * More robust feed redirection. In some rare cases, WordPress fails to automatically redirect the user to the parent content. If this happens, the plugin now attempts a redirect by parsing the URL and removing the feed portion manually. Most installations will not be affected.
 
