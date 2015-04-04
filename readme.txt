@@ -1,8 +1,8 @@
 === Disable Feeds ===
 Contributors: solarissmoke
 Tags: disable, rss, atom, rdf, feeds
-Requires at least: 3.5
-Tested up to: 3.9
+Requires at least: 3.6
+Tested up to: 4.2
 Stable tag: trunk
 
 Disables all RSS/Atom/RDF feeds on your WordPress site.
@@ -13,7 +13,9 @@ This plugin disables all RSS/Atom/RDF feeds on your site. It is useful if you us
 
 There are a couple of options to tweak the plugin's behaviour - go to `Settings -> Reading` to see them.
 
-If you come across any bugs or have suggestions, please use the plugin support forum or [email me](http://rayofsolaris.net/contact/). I can't fix it if I don't know it's broken! Please check the [FAQ](http://wordpress.org/extend/plugins/disable-feeds/faq/) for common issues.
+If you come across any bugs or have suggestions, please use the plugin support forum. I can't fix it if I don't know it's broken! Please check the [FAQ](http://wordpress.org/extend/plugins/disable-feeds/faq/) for common issues.
+
+Want to contribute? Here's the [GitHub development repository](https://github.com/solarissmoke/disable-feeds).
 
 == Frequently Asked Questions ==
 
@@ -34,6 +36,9 @@ In `Settings -> Reading` you will find an option to turn off redirection and iss
 In `Settings -> Reading` you will find an option to allow global feeds. All other feeds (individual post comments, archives, search, category etc.) will still be disabled.
 
 == Changelog ==
+
+= 1.4 =
+* Added BBPress support, thanks to Matthew Sigley.
 
 = 1.3.1 =
 * Bugfix: Missing global variable caused error when feed URL were set to 404.
