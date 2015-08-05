@@ -2,7 +2,7 @@
 Contributors: solarissmoke
 Tags: disable, rss, atom, rdf, feeds
 Requires at least: 3.6
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: trunk
 
 Disables all RSS/Atom/RDF feeds on your WordPress site.
